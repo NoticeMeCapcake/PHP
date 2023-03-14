@@ -1,4 +1,6 @@
 <?php
+require_once "Tree.php";
+require_once "Apple.php";
 
 class AppleTree implements Tree
 {
