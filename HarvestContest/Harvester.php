@@ -2,15 +2,16 @@
 
 class Harvester
 {
-    public array $harvestedFruits;
+    private array $harvestedFruits;
     public function __construct() {
         $this->harvestedFruits = array();
     }
-
-    public function harvest(Tree $tree): void {
-        $this->harvestedFruits = array_merge($this->harvestedFruits ,$tree->harvest());
+    public function harvest(Garden $garden): void {
+        foreach ($garden->trees as $tree) {
+            $this->harvestedFruits = array_merge($this->harvestedFruits ,$tree->harvest());
+        }
     }
-    public function countFruits(): array {
+    public function popNSortFruits(): array {
         $result = array(
             "Apple" => new FruitContainer(),
             "Pear" => new FruitContainer()
@@ -23,6 +24,8 @@ class Harvester
                 $result[$fruitName]->weight += $fruit->getWeight();
             }
         }
+        $this->harvestedFruits = [];
         return $result;
     }
+
 }

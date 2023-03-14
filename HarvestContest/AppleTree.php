@@ -2,9 +2,8 @@
 require_once "Tree.php";
 require_once "Apple.php";
 
-class AppleTree implements Tree
+class AppleTree extends Tree
 {
-    public array $fruits;
     public function growFruits()
     {
         $this->fruits = [];
@@ -13,8 +12,4 @@ class AppleTree implements Tree
         }
     }
 
-    public function harvest(): array
-    {
-        return $this->fruits;
-    }
 }

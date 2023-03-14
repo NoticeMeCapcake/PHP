@@ -3,19 +3,28 @@ require_once 'Garden.php';
 require_once 'AppleTree.php';
 require_once 'PearTree.php';
 
+srand(time());
 
 $appleTreeAmount = 10;
 $pearTreeAmount = 15;
+
 $garden = new Garden();
+$harvester = new Harvester();
+
 for ($i = 0; $i < $appleTreeAmount; $i++) {
     $garden->plantTree(new AppleTree());
 }
 for ($i = 0; $i < $pearTreeAmount; $i++) {
     $garden->plantTree(new PearTree());
 }
-echo sizeof($garden->trees).PHP_EOL;
+
 $garden->growAllFruits();
-$garden->harvest();
-$gardenHarvest = $garden->summarizeHarvest();
-echo "Apples[amount: ".$gardenHarvest["Apple"]->fruitAmount.", weight: ".$gardenHarvest["Apple"]->weight."gm]".PHP_EOL;
-echo "Pears[amount: ".$gardenHarvest["Pear"]->fruitAmount.", weight: ".$gardenHarvest["Pear"]->weight."gm]".PHP_EOL;
+
+$harvester->harvest($garden);
+
+$gardenHarvest = $harvester->popNSortFruits();
+
+echo "Яблоки[кол-во: " . $gardenHarvest["Apple"]->fruitAmount . ", вес: " .
+    $gardenHarvest["Apple"]->weight . " грамм]" . PHP_EOL;
+echo "Груши[кол-во: " . $gardenHarvest["Pear"]->fruitAmount .
+    ", вес: " . $gardenHarvest["Pear"]->weight." грамм]" . PHP_EOL;

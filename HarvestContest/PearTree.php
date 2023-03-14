@@ -1,20 +1,14 @@
 <?php
 require_once "Tree.php";
 require_once "Pear.php";
-class PearTree implements Tree
+class PearTree extends Tree
 {
-    public array $fruits;
     public function growFruits()
     {
         $this->fruits = [];
-        for ($i = 0; $i < rand(40, 50); $i++) {
+        for ($i = 0; $i < rand(0, 20); $i++) {
             $this->fruits[] = new Pear();
         }
-    }
-
-    public function harvest(): array
-    {
-        return $this->fruits;
     }
 
 }
