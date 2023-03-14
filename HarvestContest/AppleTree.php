@@ -10,4 +10,9 @@ class AppleTree implements Tree
             $this->fruits[] = new Apple();
         }
     }
+
+    public function harvest(): array
+    {
+        return $this->fruits;
+    }
 }
